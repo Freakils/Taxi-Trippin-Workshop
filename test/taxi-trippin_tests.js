@@ -1,5 +1,15 @@
+// var hello = require('./hello');
+// var assert = require('assert');
+//
+// describe('test for hello', function(){
+//
+//     it('it should say hello', function(){
+//         assert.equal(hello(), "hello world!");
+//     });
 
-var tripsMinimum = require("../cpt-trips-min");
+var tripsTotal = require("../trips-total");
+var tripsMinimum = require("../trips-minimum");
+var records = require("../records");
 var assert = require("assert");
 
 var capeTownTaxis = [{
@@ -76,6 +86,15 @@ var durbanTaxis = [{
   "Trips": 20
 }];
 
+describe("How many trips did all the taxis make?", function() {
+  it("should show total/how many trips did all the taxis make", function() {
+    assert.equal(tripsTotal(capeTownTaxis), 54);
+  });
+  it("should show total/how many trips did all the taxis make", function() {
+    assert.equal(tripsTotal(durbanTaxis), 117)
+  });
+});
+
 describe("What’s the lowest number of trips that any taxi made?", function() {
   it("should show me the lowest number of trips that any taxi in Cape Town made", function() {
     assert.equal(tripsMinimum(capeTownTaxis), 9);
@@ -84,3 +103,32 @@ describe("What’s the lowest number of trips that any taxi made?", function() {
     assert.equal(tripsMinimum(durbanTaxis), 9);
   });
 });
+
+describe("What records do we have for CA 123 456 and taxi ND 123 456?", function() {
+      it("should show me all records of taxi CA 123 456", function() {
+        assert.deepEqual(records(capeTownTaxis, "CA 123 456"), [{
+          "RegistrationNumber": "CA 123 456",
+          "Route": "Cape Town - Bellville",
+          "Fare": 13,
+          "Trips": 9
+        }, {
+          "RegistrationNumber": "CA 123 456",
+          "Route": "Cape Town - Gugulethu",
+          "Fare": 12,
+          "Trips": 11
+        }]);
+      });
+      it("should show me all records of taxi ND 123 456", function() {
+          assert.deepEqual(records(durbanTaxis, "ND 123 456"), [{
+              "RegistrationNumber": "ND 123 456",
+              "Route": "Durban - University of KZN",
+              "Fare": 7,
+              "Trips": 14
+            }, {
+              "RegistrationNumber": "ND 123 456",
+              "Route": "Durban - Umbilo",
+              "Fare": 8,
+              "Trips": 15
+            }]);
+          });
+      });
