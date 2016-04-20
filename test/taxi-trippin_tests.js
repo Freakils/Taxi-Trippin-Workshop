@@ -10,6 +10,7 @@
 var tripsTotal = require("../trips-total");
 var tripsMinimum = require("../trips-minimum");
 var records = require("../records");
+var tripsForTaxi = require("../trips-for-taxi")
 var assert = require("assert");
 
 var capeTownTaxis = [{
@@ -105,30 +106,40 @@ describe("What’s the lowest number of trips that any taxi made?", function() {
 });
 
 describe("What records do we have for CA 123 456 and taxi ND 123 456?", function() {
-      it("should show me all records of taxi CA 123 456", function() {
-        assert.deepEqual(records(capeTownTaxis, "CA 123 456"), [{
-          "RegistrationNumber": "CA 123 456",
-          "Route": "Cape Town - Bellville",
-          "Fare": 13,
-          "Trips": 9
-        }, {
-          "RegistrationNumber": "CA 123 456",
-          "Route": "Cape Town - Gugulethu",
-          "Fare": 12,
-          "Trips": 11
-        }]);
-      });
-      it("should show me all records of taxi ND 123 456", function() {
-          assert.deepEqual(records(durbanTaxis, "ND 123 456"), [{
-              "RegistrationNumber": "ND 123 456",
-              "Route": "Durban - University of KZN",
-              "Fare": 7,
-              "Trips": 14
-            }, {
-              "RegistrationNumber": "ND 123 456",
-              "Route": "Durban - Umbilo",
-              "Fare": 8,
-              "Trips": 15
-            }]);
-          });
-      });
+  it("should show me all records of taxi CA 123 456", function() {
+    assert.deepEqual(records(capeTownTaxis, "CA 123 456"), [{
+      "RegistrationNumber": "CA 123 456",
+      "Route": "Cape Town - Bellville",
+      "Fare": 13,
+      "Trips": 9
+    }, {
+      "RegistrationNumber": "CA 123 456",
+      "Route": "Cape Town - Gugulethu",
+      "Fare": 12,
+      "Trips": 11
+    }]);
+  });
+  it("should show me all records of taxi ND 123 456", function() {
+    assert.deepEqual(records(durbanTaxis, "ND 123 456"), [{
+      "RegistrationNumber": "ND 123 456",
+      "Route": "Durban - University of KZN",
+      "Fare": 7,
+      "Trips": 14
+    }, {
+      "RegistrationNumber": "ND 123 456",
+      "Route": "Durban - Umbilo",
+      "Fare": 8,
+      "Trips": 15
+    }]);
+  });
+});
+
+describe("How many trips did CA 234 567 and ND 234 567 make?", function() {
+  it("should show the number of trips made by taxis CA 234 567", function() {
+    assert.equal(tripsForTaxi(capeTownTaxis, "CA 234 567"), 11);
+  });
+
+  it("should show the number of trips made by taxis ND 234 567", function() {
+    assert.equal(tripsForTaxi(durbanTaxis, "ND 234 567"), 36);
+  });
+});
