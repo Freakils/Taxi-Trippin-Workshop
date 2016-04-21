@@ -1,7 +1,7 @@
-module.exports = function(tripList, RegNumber){
+module.exports = function(tripList, RegNumber) {
   var data = [];
-  tripList.forEach(function(reg){
-    if(reg.RegistrationNumber === RegNumber){
+  tripList.forEach(function(reg) {
+    if (reg.RegistrationNumber === RegNumber) {
       data.push(reg);
     }
   })

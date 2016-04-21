@@ -10,7 +10,9 @@
 var tripsTotal = require("../trips-total");
 var tripsMinimum = require("../trips-minimum");
 var records = require("../records");
-var tripsForTaxi = require("../trips-for-taxi")
+var tripsForTaxi = require("../trips-for-taxi");
+var routes = require("../routes");
+var totalEarnings = require("../total-earnings")
 var assert = require("assert");
 
 var capeTownTaxis = [{
@@ -141,5 +143,23 @@ describe("How many trips did CA 234 567 and ND 234 567 make?", function() {
 
   it("should show the number of trips made by taxis ND 234 567", function() {
     assert.equal(tripsForTaxi(durbanTaxis, "ND 234 567"), 36);
+  });
+});
+
+describe("What are the names of all the routes that CA 345 678 and ND 345 678 took?", function() {
+  it("it should show the routes for taken by taxi CA 345 678", function() {
+    assert.deepEqual(routes(capeTownTaxis, "CA 345 678"), ["Cape Town - Langa", "Cape Town - Cape Town"]);
+  });
+  it("it should show the routes for taken routes by taxi ND 345 678", function() {
+    assert.deepEqual(routes(durbanTaxis, "ND 345 678"), ["Durban - Umbilo", "Durban - University of KZN", "Durban - Umlazi Station"])
+  });
+});
+
+describe("What are the total earnings for CA 234 567 and ND 234 567?", function() {
+  it("should give the total earnings for taxi CA 234 567", function() {
+    assert.equal(totalEarnings(capeTownTaxis, "CA 234 567"), 132)
+  });
+  it("should give the total earning for taxi ND 234 567", function() {
+    assert.equal(totalEarnings(durbanTaxis, "ND 234 567"), 387)
   });
 });

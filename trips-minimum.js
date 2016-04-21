@@ -1,8 +1,8 @@
-module.exports = function (tripList){
+module.exports = function(tripList) {
 
   var minTrips = 100;
-  tripList.forEach(function(trips){
-    if(trips.Trips < minTrips){
+  tripList.forEach(function(trips) {
+    if (trips.Trips < minTrips) {
 
       minTrips = trips.Trips;
     }
