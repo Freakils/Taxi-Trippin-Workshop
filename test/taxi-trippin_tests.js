@@ -12,7 +12,8 @@ var tripsMinimum = require("../trips-minimum");
 var records = require("../records");
 var tripsForTaxi = require("../trips-for-taxi");
 var routes = require("../routes");
-var totalEarnings = require("../total-earnings")
+var totalEarnings = require("../total-earnings");
+var earningsForEachTaxi = require("../earnings-for-each-taxi")
 var assert = require("assert");
 
 var capeTownTaxis = [{
@@ -162,4 +163,22 @@ describe("What are the total earnings for CA 234 567 and ND 234 567?", function(
   it("should give the total earning for taxi ND 234 567", function() {
     assert.equal(totalEarnings(durbanTaxis, "ND 234 567"), 387)
   });
+});
+
+describe("What are the total earnings for each taxi?", function() {
+  it("should give the total earnings for each taxi in CPT", function() {
+    assert.deepEqual(earningsForEachTaxi(capeTownTaxis), {
+      "CA 123 456": 249,
+      "CA 234 567": 132,
+      "CA 345 678": 234
+    });
+  });
+  it("should give the total earnings for each taxi in DBN", function(){
+    assert.deepEqual(earningsForEachTaxi(durbanTaxis), {
+      "ND 123 456": 218,
+      "ND 234 567": 387,
+      "ND 345 678": 518
+    });
+  });
+
 });
