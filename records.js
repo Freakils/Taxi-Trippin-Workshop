@@ -5,5 +5,6 @@ module.exports = function(tripList, RegNumber) {
       data.push(reg);
     }
   })
+  console.log(data);
   return data;
 }

@@ -9,5 +9,6 @@ module.exports = function(tripList) {
   tripList.forEach(function(trips) {
     total = total + trips.Trips;
   });
+  console.log(total);
   return total;
 };
